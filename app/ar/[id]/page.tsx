@@ -255,7 +255,7 @@ export default function ARViewerPage() {
             {/* Custom AR button */}
             <button
               slot="ar-button"
-              className="absolute bottom-10 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-white/90 active:scale-95 transition-all shadow-lg"
+              className="absolute bottom-16 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-white/90 active:scale-95 transition-all shadow-lg"
             >
               <Scan className="w-4 h-4" />
               View in AR
