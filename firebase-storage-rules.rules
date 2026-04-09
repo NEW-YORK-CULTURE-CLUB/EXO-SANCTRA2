@@ -1,0 +1,119 @@
+rules_version = 'v2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Private artwork images - only authenticated users can access
+    match /private-artwork-images/{artworkId}/{fileName} {
+      allow read: if request.auth != null && 
+        (request.auth.token.gallery_id != null || 
+         request.auth.token.role == 'admin' ||
+         request.auth.token.role == 'artist');
+      allow write: if request.auth != null && 
+        (request.auth.token.gallery_id != null || 
+         request.auth.token.role == 'admin' ||
+         request.auth.token.role == 'artist');
+      allow delete: if request.auth != null && 
+        (request.auth.token.gallery_id != null || 
+         request.auth.token.role == 'admin');
+    }
+    
+    // Public artwork derivatives - anyone can read, authenticated users can write
+    match /public-artwork-derivatives/{artworkId}/{fileName} {
+      allow read: if true; // Public read access for optimized images
+      allow write: if request.auth != null && 
+        (request.auth.token.gallery_id != null || 
+         request.auth.token.role == 'admin' ||
+         request.auth.token.role == 'artist');
+      allow delete: if request.auth != null && 
+        (request.auth.token.gallery_id != null || 
+         request.auth.token.role == 'admin');
+    }
+    
+    // Artist photos - only authenticated users can access
+    match /artist-photos/{fileName} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && 
+        (request.auth.token.role == 'admin' ||
+         request.auth.token.role == 'artist');
+      allow delete: if request.auth != null && 
+        (request.auth.token.role == 'admin');
+    }
+    
+    // W-9 forms - only authenticated users and admins can access
+    match /w9-forms/{fileName} {
+      allow read: if request.auth != null && 
+        (request.auth.token.role == 'admin' ||
+         request.auth.token.role == 'artist');
+      allow write: if request.auth != null && 
+        (request.auth.token.role == 'admin' ||
+         request.auth.token.role == 'artist');
+      allow delete: if request.auth != null && 
+        (request.auth.token.role == 'admin');
+    }
+    
+    // Artist documents - only authenticated users can access
+    match /artist-documents/{fileName} {
+      allow read: if request.auth != null && 
+        (request.auth.token.role == 'admin' ||
+         request.auth.token.role == 'artist');
+      allow write: if request.auth != null && 
+        (request.auth.token.role == 'admin' ||
+         request.auth.token.role == 'artist');
+      allow delete: if request.auth != null && 
+        (request.auth.token.role == 'admin');
+    }
+    
+    // Artwork certificates - only authenticated users can access
+    match /artwork-certificates/{fileName} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && 
+        (request.auth.token.gallery_id != null || 
+         request.auth.token.role == 'admin' ||
+         request.auth.token.role == 'artist');
+      allow delete: if request.auth != null && 
+        (request.auth.token.gallery_id != null || 
+         request.auth.token.role == 'admin');
+    }
+    
+    // User photos - only the user themselves or admins can access
+    match /users/{userType}/{fileName} {
+      allow read: if request.auth != null && 
+        (request.auth.uid == resource.metadata.owner ||
+         request.auth.token.role == 'admin');
+      allow write: if request.auth != null && 
+        (request.auth.uid == resource.metadata.owner ||
+         request.auth.token.role == 'admin');
+      allow delete: if request.auth != null && 
+        (request.auth.uid == resource.metadata.owner ||
+         request.auth.token.role == 'admin');
+    }
+    
+    // Gallery logos - only authenticated users can access
+    match /galleries/logos/{theme}/{fileName} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && 
+        (request.auth.token.gallery_id != null || 
+         request.auth.token.role == 'admin');
+      allow delete: if request.auth != null && 
+        (request.auth.token.gallery_id != null || 
+         request.auth.token.role == 'admin');
+    }
+    
+    // Legacy artwork images - maintain backward compatibility but restrict access
+    match /artwork-images/{fileName} {
+      allow read: if request.auth != null; // Only authenticated users
+      allow write: if request.auth != null && 
+        (request.auth.token.gallery_id != null || 
+         request.auth.token.role == 'admin' ||
+         request.auth.token.role == 'artist');
+      allow delete: if request.auth != null && 
+        (request.auth.token.gallery_id != null || 
+         request.auth.token.role == 'admin');
+    }
+    
+    // Default rule - deny all other access
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,191 @@
+/* Global Anti-Save Styles for ExhibitIQ */
+
+/* Prevent image saving and copying */
+img {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+  -khtml-user-drag: none !important;
+  -moz-user-drag: none !important;
+  -o-user-drag: none !important;
+  user-drag: none !important;
+  pointer-events: none !important;
+}
+
+/* Allow pointer events for interactive images */
+img[data-interactive="true"] {
+  pointer-events: auto !important;
+}
+
+/* Prevent text selection on images */
+img::selection {
+  background: transparent !important;
+}
+
+img::-moz-selection {
+  background: transparent !important;
+}
+
+/* Disable image context menu */
+img {
+  -webkit-context-menu: none !important;
+  -moz-context-menu: none !important;
+  context-menu: none !important;
+}
+
+/* Prevent image dragging */
+img {
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Disable image saving in print */
+@media print {
+  img {
+    display: none !important;
+  }
+}
+
+/* Additional protection for artwork images */
+.artwork-image,
+.gallery-image,
+.artist-photo {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+  -moz-user-drag: none !important;
+  -o-user-drag: none !important;
+  user-drag: none !important;
+  pointer-events: none !important;
+}
+
+/* Allow interaction for specific elements */
+.artwork-image[data-interactive="true"],
+.gallery-image[data-interactive="true"],
+.artist-photo[data-interactive="true"] {
+  pointer-events: auto !important;
+}
+
+/* Prevent selection of image containers */
+.image-container,
+.artwork-card,
+.gallery-item {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+/* Disable right-click on images */
+img {
+  -webkit-context-menu: none !important;
+  -moz-context-menu: none !important;
+  context-menu: none !important;
+}
+
+/* Prevent drag and drop of images */
+img {
+  -webkit-user-drag: none !important;
+  -khtml-user-drag: none !important;
+  -moz-user-drag: none !important;
+  -o-user-drag: none !important;
+  user-drag: none !important;
+}
+
+/* Disable image saving in different contexts */
+img {
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-action: none !important;
+  touch-action: none !important;
+}
+
+/* Prevent image copying in different browsers */
+img {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-user-modify: read-only !important;
+  -moz-user-modify: read-only !important;
+  -ms-user-modify: read-only !important;
+  user-modify: read-only !important;
+}
+
+/* Disable image context menu in different browsers */
+img {
+  -webkit-context-menu: none !important;
+  -moz-context-menu: none !important;
+  context-menu: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Prevent image saving in print and other media */
+@media print {
+  img {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* Additional mobile protection */
+  img {
+    -webkit-touch-callout: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-action: manipulation !important;
+    touch-action: manipulation !important;
+  }
+}
+
+/* Disable image saving in different contexts */
+img {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+  -moz-user-drag: none !important;
+  -o-user-drag: none !important;
+  user-drag: none !important;
+  pointer-events: none !important;
+}
+
+/* Allow interaction for specific images */
+img[data-interactive="true"] {
+  pointer-events: auto !important;
+}
+
+/* Prevent text selection on images */
+img::selection {
+  background: transparent !important;
+}
+
+img::-moz-selection {
+  background: transparent !important;
+}
+
+/* Disable image context menu */
+img {
+  -webkit-context-menu: none !important;
+  -moz-context-menu: none !important;
+  context-menu: none !important;
+}
+
+/* Prevent image dragging */
+img {
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Disable image saving in print */
+@media print {
+  img {
+    display: none !important;
+  }
+}
