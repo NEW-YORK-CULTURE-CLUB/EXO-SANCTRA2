@@ -112,6 +112,3 @@ dist.zip
 *.xd
 *.indd
 *.eps
-
-# Large media vault (3D models, images — served via CDN/storage, not git)
-public/vault/

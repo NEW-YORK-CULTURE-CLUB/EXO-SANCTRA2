@@ -12,6 +12,7 @@
     "ar:convert-usdz": "./scripts/convert-glb-to-usdz.sh"
   },
   "dependencies": {
+    "@google/model-viewer": "^4.2.0",
     "@hookform/resolvers": "^3.9.1",
     "@pmndrs/branding": "0.0.8",
     "@radix-ui/react-accordion": "1.2.2",
