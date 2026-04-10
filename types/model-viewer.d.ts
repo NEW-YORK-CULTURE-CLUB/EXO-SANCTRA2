@@ -4,6 +4,7 @@
 import type React from 'react';
 
 type ModelViewerProps = React.HTMLAttributes<HTMLElement> & {
+  ref?: React.Ref<HTMLElement>;
   src?: string;
   'ios-src'?: string;
   alt?: string;

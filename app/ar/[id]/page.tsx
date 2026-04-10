@@ -102,6 +102,7 @@ export default function ARViewerPage() {
   const [qrOpen, setQrOpen] = useState(false);
   const [pageUrl, setPageUrl] = useState('');
   const shareRef = useRef<HTMLDivElement>(null);
+  const modelViewerRef = useRef<HTMLElement>(null);
 
   // Load model-viewer script + set page URL on mount
   useEffect(() => {
@@ -116,6 +117,22 @@ export default function ARViewerPage() {
       document.head.appendChild(script);
     }
   }, []);
+
+  // Re-trigger animations when AR session starts
+  useEffect(() => {
+    const mv = modelViewerRef.current as (HTMLElement & { play?: (opts?: { repetitions?: number }) => void }) | null;
+    if (!mv) return;
+
+    const handleArStatus = (e: Event) => {
+      const status = (e as CustomEvent<{ status: string }>).detail?.status;
+      if (status === 'session-started' && typeof mv.play === 'function') {
+        mv.play({ repetitions: Infinity });
+      }
+    };
+
+    mv.addEventListener('ar-status', handleArStatus);
+    return () => mv.removeEventListener('ar-status', handleArStatus);
+  }, [mounted]);
 
   // Close share dropdown on outside click
   useEffect(() => {
@@ -228,6 +245,7 @@ export default function ARViewerPage() {
       <div className="flex-1 relative min-h-0">
         {mounted && (
           <model-viewer
+            ref={modelViewerRef}
             src={artwork.path}
             {...(artwork.usdzPath ? { 'ios-src': artwork.usdzPath } : {})}
             alt={artwork.label}
