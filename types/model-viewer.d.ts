@@ -14,6 +14,7 @@ type ModelViewerProps = React.HTMLAttributes<HTMLElement> & {
   'camera-controls'?: boolean | string;
   'auto-rotate'?: boolean | string;
   'auto-rotate-delay'?: number | string;
+  autoplay?: boolean | string;
   'rotation-per-second'?: string;
   'shadow-intensity'?: string;
   'shadow-softness'?: string;

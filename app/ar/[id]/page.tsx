@@ -238,6 +238,7 @@ export default function ARViewerPage() {
             auto-rotate
             auto-rotate-delay={2000}
             rotation-per-second="20deg"
+            autoplay
             shadow-intensity="1"
             exposure="1"
             loading="eager"
