@@ -1,0 +1,50 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+      - feat/payments-shipping
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}
+
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Override git commit author
+        run: |
+          git config user.email "${{ secrets.VERCEL_OWNER_EMAIL }}"
+          git config user.name "${{ secrets.VERCEL_OWNER_NAME }}"
+          git commit --amend --no-edit --reset-author
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - run: pnpm add -g vercel@latest
+
+      - name: Deploy
+        env:
+          VERCEL_GIT_COMMIT_AUTHOR_LOGIN: ${{ secrets.VERCEL_OWNER_LOGIN }}
+          VERCEL_GIT_COMMIT_AUTHOR_NAME: ${{ secrets.VERCEL_OWNER_NAME }}
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/main" ] || [ "${{ github.ref }}" = "refs/heads/develop" ]; then
+            vercel deploy --archive=tgz --prod --token=${{ secrets.VERCEL_TOKEN }}
+          else
+            vercel deploy --archive=tgz --token=${{ secrets.VERCEL_TOKEN }}
+          fi

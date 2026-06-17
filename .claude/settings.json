@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open -Ra \"Reality Composer Pro\")",
+      "Bash(brew search:*)",
+      "Bash(pip3 install:*)",
+      "Bash(pip3 show:*)",
+      "Bash(/tmp/test_convert '/Users/USER/Downloads/APPS/EXO SANCTRA/public/vault/AR/artwork 3_ugly is beautiful_character.glb' /tmp/artwork3_test.usdz)",
+      "Bash(grep -v \".app$\")",
+      "Bash(/tmp/test_scn '/Users/USER/Downloads/APPS/EXO SANCTRA/public/vault/AR/artwork 3_ugly is beautiful_character.glb' /tmp/artwork3_test.usdz)",
+      "Bash(python3 -m pip install --dry-run usd-core)",
+      "Bash(npm search:*)",
+      "Bash(python3 -c \"import pxr; print\\('USD available'\\)\")",
+      "Bash(brew info:*)"
+    ]
+  }
+}
