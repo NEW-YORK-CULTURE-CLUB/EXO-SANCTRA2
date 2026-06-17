@@ -85,7 +85,7 @@ export default function ARGalleryPage() {
         {/* Hero */}
         <motion.div
           className="relative min-h-[60vh] bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: 'url(/vault/bg/7.jpg)' }}
+          style={{ backgroundImage: 'url(/vault/bg/1.jpg)' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2 }}

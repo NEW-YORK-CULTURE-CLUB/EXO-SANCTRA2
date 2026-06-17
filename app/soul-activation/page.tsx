@@ -14,6 +14,7 @@ import { AnimatedSection, StaggeredContainer, StaggeredItem } from '@/components
 import Navbar from '@/components/Navbar.jsx'
 import Footer from '@/components/Footer.jsx'
 import { useTranslation } from '@/lib/i18n'
+import { SoulAltarCheckout } from '@/components/soul-altar-checkout'
 
 function SoulActivation() {
   const [currentSlide, setCurrentSlide] = React.useState(0)
@@ -408,6 +409,13 @@ function SoulActivation() {
                   Begin your journey of self-discovery with a sacred altar that serves as your 
                   daily tool for empowerment and protection against the noise of humanity.
                 </p>
+
+                <div className="max-w-xl mx-auto mb-6 sm:mb-8">
+                  <p className="text-xs uppercase tracking-widest text-white/50 mb-3 text-center">
+                    Purchase your Soul Activation Art Altar
+                  </p>
+                  <SoulAltarCheckout />
+                </div>
                 
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <Button 

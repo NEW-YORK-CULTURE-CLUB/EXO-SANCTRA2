@@ -140,7 +140,7 @@ export async function POST(request: NextRequest) {
     // Prepare mail options
     const mailOptions = {
       from: 'EXO SANCTRA',
-      to: ['freakisslin@gmail.com', 'okuakpabio0@gmail.com'],
+      to: ['hello@exosanctra.com'],
       subject: `New Alien Gift Claim - ${data.giftType}`,
       text: `
 New Alien Gift Claim - Data Collection

@@ -361,7 +361,7 @@ function Navbar() {
                     </Link>
                   </li>
                 ))}
-                <a href="mailto:admin@exosanctra.art">
+                <a href="mailto:hello@exosanctra.com">
                   <HiMail className="text-2xl cursor-pointer" />
                 </a>
                 <a href="tel:+1 (702) 764-7232">
@@ -420,7 +420,7 @@ function Navbar() {
                               {/* <Image src="/vault/Elements for Web Decoration/Earth.png" alt="Earth" width={200} height={200} className="opacity-90" /> */}
                               <span>My Universe</span>
                             </DropdownMenuItem>
-                            <DropdownMenuItem className='cursor-pointer' onClick={() => window.open('mailto:freakisslin@gmail.com', '_blank')}>
+                            <DropdownMenuItem className='cursor-pointer' onClick={() => window.open('mailto:hello@exosanctra.com', '_blank')}>
                               <HelpCircle className="mr-2 h-4 w-4" />
                               <span>{t('helpSupport')}</span>
                             </DropdownMenuItem>
@@ -483,7 +483,7 @@ function Navbar() {
                                   {/* <Image src="/vault/Elements for Web Decoration/Earth.png" alt="Earth" width={200} height={200} className="opacity-90" /> */}
                                   <span>My Universe</span>
                                 </DropdownMenuItem>
-                                <DropdownMenuItem className='cursor-pointer' onClick={() => window.open('mailto:freakisslin@gmail.com', '_blank')}>
+                                <DropdownMenuItem className='cursor-pointer' onClick={() => window.open('mailto:hello@exosanctra.com', '_blank')}>
                                   <HelpCircle className="mr-2 h-4 w-4" />
                                   <span>{t('helpSupport')}</span>
                                 </DropdownMenuItem>
@@ -573,7 +573,7 @@ function Navbar() {
                             {/* <Image src="/vault/Elements for Web Decoration/Earth.png" alt="Earth" width={200} height={200} className="opacity-90" /> */}
                             <span>My Universe</span>
                           </DropdownMenuItem>
-                          <DropdownMenuItem className='cursor-pointer' onClick={() => window.open('mailto:freakisslin@gmail.com', '_blank')}>
+                          <DropdownMenuItem className='cursor-pointer' onClick={() => window.open('mailto:hello@exosanctra.com', '_blank')}>
                             <HelpCircle className="mr-2 h-4 w-4" />
                             <span>{t('helpSupport')}</span>
                           </DropdownMenuItem>

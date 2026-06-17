@@ -114,7 +114,7 @@ export default function TermsOfService() {
               <strong>Parallel Worlds, Inc.</strong><br />
               16192 Coastal Highway<br />
               Lewes, Delaware 19958<br />
-              Email: admin@parallelworlds.us
+              Email: hello@exosanctra.com
             </p>
           </motion.div>
         </div>

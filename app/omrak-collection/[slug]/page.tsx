@@ -5,9 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
-import { ChevronLeft, ChevronRight, Share2, Scan, Link2, QrCode, X, Download } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Share2, Scan, Link2, QrCode, X, Loader2 } from 'lucide-react';
 import QRCode from 'react-qr-code';
 import { omrakArtworks } from '../data';
+import { formatUsd, getTierPrices, type CheckoutProductType } from '../pricing';
 
 export default function ArtworkPage() {
   const router = useRouter();
@@ -22,6 +23,36 @@ export default function ArtworkPage() {
   const [copied, setCopied] = useState(false);
   const [qrOpen, setQrOpen] = useState(false);
   const [pageUrl, setPageUrl] = useState('');
+  const [checkoutLoading, setCheckoutLoading] = useState<CheckoutProductType | null>(null);
+
+  const tierPrices = artwork ? getTierPrices(artwork.priceTier) : null;
+
+  const handleBuy = useCallback(async (type: CheckoutProductType) => {
+    if (!artwork?.stripeProductId) return;
+    setCheckoutLoading(type);
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          productId: artwork.stripeProductId,
+          title: artwork.title,
+          type,
+          priceTier: artwork.priceTier,
+        }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        console.error('Checkout error:', data.error);
+      }
+    } catch (err) {
+      console.error('Checkout failed:', err);
+    } finally {
+      setCheckoutLoading(null);
+    }
+  }, [artwork]);
   const shareRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -210,25 +241,63 @@ export default function ArtworkPage() {
           )}
 
           {/* Purchase */}
-          <div className="space-y-3">
+          <div className="space-y-4">
             <div className="text-xs text-white/70">
               <p className="font-semibold text-white mb-1">Collect this OM&apos;RAK:</p>
-              <p>Originals are one-of-one. Prints are high-quality archival reproductions, made to order.</p>
+              <p>Originals are one-of-one. Prints are archival reproductions, made to order.</p>
             </div>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href={`mailto:freakisslin@gmail.com?subject=OM'RAK Original Inquiry – ${encodeURIComponent(artwork.title)}`}
-                className="inline-flex items-center justify-center rounded-full bg-white text-black px-4 py-2 text-xs font-semibold tracking-wide hover:bg-white/90 transition-colors"
-              >
-                Inquire about original
-              </a>
-              <a
-                href={`mailto:freakisslin@gmail.com?subject=OM'RAK Print Inquiry – ${encodeURIComponent(artwork.title)}`}
-                className="inline-flex items-center justify-center rounded-full border border-white/60 text-white px-4 py-2 text-xs font-semibold tracking-wide hover:bg-white/10 transition-colors"
-              >
-                Request a print
-              </a>
-            </div>
+            {artwork.stripeProductId && tierPrices ? (
+              <div className="space-y-4">
+                <button
+                  type="button"
+                  onClick={() => handleBuy('original')}
+                  disabled={checkoutLoading !== null}
+                  className="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-white text-black px-4 py-2.5 text-xs font-semibold tracking-wide hover:bg-white/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {checkoutLoading === 'original' ? <Loader2 className="w-3 h-3 animate-spin" /> : null}
+                  Buy Original — ${formatUsd(tierPrices.original)}
+                </button>
+
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-white/50 mb-2">Prints</p>
+                  <div className="flex flex-col gap-2">
+                    <button
+                      type="button"
+                      onClick={() => handleBuy('print-standard')}
+                      disabled={checkoutLoading !== null}
+                      className="inline-flex items-center justify-center gap-1.5 rounded-full border border-white/60 text-white px-4 py-2 text-xs font-semibold tracking-wide hover:bg-white/10 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      {checkoutLoading === 'print-standard' ? <Loader2 className="w-3 h-3 animate-spin" /> : null}
+                      Standard 11×14 — ${formatUsd(tierPrices.printStandard)}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleBuy('print-large')}
+                      disabled={checkoutLoading !== null}
+                      className="inline-flex items-center justify-center gap-1.5 rounded-full border border-white/60 text-white px-4 py-2 text-xs font-semibold tracking-wide hover:bg-white/10 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      {checkoutLoading === 'print-large' ? <Loader2 className="w-3 h-3 animate-spin" /> : null}
+                      Large 16×20 — ${formatUsd(tierPrices.printLarge)}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href={`mailto:alinaalien.creator@exosanctra.com?subject=OM'RAK Original Inquiry – ${encodeURIComponent(artwork.title)}`}
+                  className="inline-flex items-center justify-center rounded-full bg-white text-black px-4 py-2 text-xs font-semibold tracking-wide hover:bg-white/90 transition-colors"
+                >
+                  Inquire about original
+                </a>
+                <a
+                  href={`mailto:alinaalien.creator@exosanctra.com?subject=OM'RAK Print Inquiry – ${encodeURIComponent(artwork.title)}`}
+                  className="inline-flex items-center justify-center rounded-full border border-white/60 text-white px-4 py-2 text-xs font-semibold tracking-wide hover:bg-white/10 transition-colors"
+                >
+                  Request a print
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </motion.div>

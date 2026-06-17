@@ -297,7 +297,7 @@ export function Sidebar() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="font-semibold text-sm text-foreground truncate">Gallery Admin</div>
-                    <div className="text-xs text-muted-foreground truncate">{gallery?.email || 'admin@exhibitiq.com'}</div>
+                    <div className="text-xs text-muted-foreground truncate">{gallery?.email || 'hello@exosanctra.com'}</div>
                   </div>
                   <Link href="/settings" className="ml-2 hover:opacity-80 transition-opacity">
                   <GrSettingsOption className="h-5 w-5"/>

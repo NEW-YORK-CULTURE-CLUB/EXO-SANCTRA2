@@ -216,7 +216,7 @@ function StoreOfEssence() {
                           className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full py-3"
                           onClick={() => {
                             // Open email client or contact form
-                            window.location.href = 'mailto:info@exosanctra.com?subject=Inquiry about ' + encodeURIComponent(category.title)
+                            window.location.href = 'mailto:hello@exosanctra.com?subject=Inquiry about ' + encodeURIComponent(category.title)
                           }}
                         >
                           Inquire

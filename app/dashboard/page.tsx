@@ -29,6 +29,7 @@ import { motion } from 'framer-motion';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import ExhibitIQWelcome from '@/components/exhibitiq-welcome';
 import { ArtworkService } from '@/lib/artwork-service';
+import OrdersPanel from '@/components/orders-panel';
 
 export default function Dashboard() {
   const { user, loading, userData } = useAuth();
@@ -225,8 +226,9 @@ export default function Dashboard() {
           <div className="flex-1 order-1 lg:order-1">
             {/* Tabs Section */}
             <Tabs defaultValue="overview" className="w-full">
-              <TabsList className="grid w-full max-w-full lg:max-w-[400px] grid-cols-3">
+              <TabsList className="grid w-full max-w-full lg:max-w-[520px] grid-cols-4">
                 <TabsTrigger value="overview" className="text-sm">Overview</TabsTrigger>
+                <TabsTrigger value="orders" className="text-sm">Orders</TabsTrigger>
                 <TabsTrigger value="auctions" className="text-sm">Auctions</TabsTrigger>
                 <TabsTrigger value="digital-floor" className="text-sm">Digital Floor</TabsTrigger>
               </TabsList>
@@ -257,7 +259,11 @@ export default function Dashboard() {
               </TabsContent>
               
             
-               <TabsContent value="auctions" className="space-y-6 mt-6">
+               <TabsContent value="orders" className="mt-6">
+                <OrdersPanel />
+              </TabsContent>
+
+              <TabsContent value="auctions" className="space-y-6 mt-6">
                 {/* Upcoming Auctions Section */}
                 <UpcomingAuctions auctions={upcomingAuctions} />
 

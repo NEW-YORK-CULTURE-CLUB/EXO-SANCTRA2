@@ -1,3 +1,5 @@
+import type { PriceTier } from './pricing';
+
 export type OmrakArtwork = {
   id: number;
   slug: string;
@@ -7,6 +9,8 @@ export type OmrakArtwork = {
   arId?: string; // matches AR_ARTWORKS id in /ar page
   usdzPath?: string;
   glbPath?: string;
+  stripeProductId?: string;
+  priceTier: PriceTier;
 };
 
 export const omrakArtworks: OmrakArtwork[] = [
@@ -20,6 +24,8 @@ export const omrakArtworks: OmrakArtwork[] = [
     arId: 'artwork-1',
     glbPath: '/vault/AR/artwork 1_planet of love_character.glb',
     usdzPath: '/vault/AR/artwork 1_planet of love_character.usdz',
+    stripeProductId: 'prod_UItdW6H0lGKach',
+    priceTier: 'standard',
   },
   {
     id: 2,
@@ -31,6 +37,8 @@ export const omrakArtworks: OmrakArtwork[] = [
     arId: 'artwork-2',
     glbPath: '/vault/AR/artwork 2_the unburied ones_character.glb',
     usdzPath: '/vault/AR/artwork 2_the unburied ones_character.usdz',
+    stripeProductId: 'prod_UItpnqsMow5xJ0',
+    priceTier: 'premium',
   },
   {
     id: 3,
@@ -39,6 +47,8 @@ export const omrakArtworks: OmrakArtwork[] = [
     image: '/vault/Characters for AR_Art Collection/Ugly is Beautiful.jpg',
     description:
       "Beauty doesn't live in perfection. It lives in the cracks, in the scars, in the trembling places that refuse to be erased. What looks ugly at first is often the truest form of grace. There is a strange light in the broken, a glow that appears only when something dares to show itself as it really is. Ugly is beautiful because it is real, because it doesn't hide its dirt behind a powdered mask—and once you recognize it, you begin to recognize yourself, turning the hidden self inside out so it can finally breathe beyond human skin.",
+    stripeProductId: 'prod_UIttgtPIMhP4Rf',
+    priceTier: 'standard',
   },
   {
     id: 4,
@@ -50,6 +60,8 @@ export const omrakArtworks: OmrakArtwork[] = [
     arId: 'artwork-4',
     glbPath: '/vault/AR/artwork 4_my freak family_character.glb',
     usdzPath: '/vault/AR/artwork 4_my freak family_character.usdz',
+    stripeProductId: 'prod_UIu0fuNNNRrhZJ',
+    priceTier: 'standard',
   },
   {
     id: 5,
@@ -58,6 +70,8 @@ export const omrakArtworks: OmrakArtwork[] = [
     image: '/vault/Characters for AR_Art Collection/Exorcise Me Whole.jpg',
     description:
       "Parasites grow when you keep your mouth shut and hide your hands shaking from fear. You let strangers carve rules into your bones, rules that were never yours. Vomit the silence until you choke on your own freedom. Spit on their laws. Let your blood ink their unholy pages. Scream until your ribs nearly crack, burn so hot your shame turns to ash, and seal the holes they crawl through. This world is yours—will you let them touch it again, or will you open your hands and take it back?",
+    stripeProductId: 'prod_UIu91XHbILBVSh',
+    priceTier: 'premium',
   },
   {
     id: 6,
@@ -66,6 +80,8 @@ export const omrakArtworks: OmrakArtwork[] = [
     image: '/vault/Characters for AR_Art Collection/Homebound Galaxy.jpg',
     description:
       "Find the secret galaxy tucked in your ribs. Breathe the stars in slowly. Little planets spin, comet-like memories arc across, and small suns keep the dark from swallowing you whole. These interior orbits protect the fragile, tender parts of you. Wherever you go, your universe goes with you—an inner home that stays full, a stubborn light that will not leave even when hope feels far away.",
+    stripeProductId: 'prod_UIuDxM9dIq9fFy',
+    priceTier: 'standard',
   },
   {
     id: 7,
@@ -77,6 +93,8 @@ export const omrakArtworks: OmrakArtwork[] = [
     arId: 'artwork-7',
     glbPath: '/vault/AR/artwork 7_liquid desire_character.glb',
     usdzPath: '/vault/AR/artwork 7_liquid desire_character.usdz',
+    stripeProductId: 'prod_UIuGsCzRlhH88W',
+    priceTier: 'standard',
   },
   {
     id: 8,
@@ -88,6 +106,8 @@ export const omrakArtworks: OmrakArtwork[] = [
     arId: 'artwork-8',
     glbPath: '/vault/AR/artwork 8_cleansing rite_character.glb',
     usdzPath: '/vault/AR/artwork 8_cleansing rite_character.usdz',
+    stripeProductId: 'prod_UIuJ52PrTT226k',
+    priceTier: 'standard',
   },
   {
     id: 9,
@@ -96,6 +116,8 @@ export const omrakArtworks: OmrakArtwork[] = [
     image: '/vault/Characters for AR_Art Collection/Taste the Power.jpg',
     description:
       "Power feels like heat in hands that used to be frozen. To hold it is to feel appetite and honor at the same time, a knowing that lives in the body—a hunger for honest consequence. It wakes you to the fact that authority is earned every morning, in small choices and loud ones, in what you answer and what you refuse. It pushes you toward fierce creation and necessary undoing. Own your will: strengths and flaws as one force.",
+    stripeProductId: 'prod_UIuNH8pCGZEJHW',
+    priceTier: 'value',
   },
   {
     id: 10,
@@ -107,6 +129,8 @@ export const omrakArtworks: OmrakArtwork[] = [
     arId: 'artwork-10',
     glbPath: '/vault/AR/artwork 10_necroflora_character.glb',
     usdzPath: '/vault/AR/artwork 10_necroflora_character.usdz',
+    stripeProductId: 'prod_UIuOAWJw5iRoGo',
+    priceTier: 'value',
   },
   {
     id: 11,
@@ -115,5 +139,7 @@ export const omrakArtworks: OmrakArtwork[] = [
     image: '/vault/Characters for AR_Art Collection/Let Go.jpg',
     description:
       'Deep inside, notice how you open wide. Swim deeper and deeper. Can you feel it? Can you hear it? This is your truth.',
+    stripeProductId: 'prod_UIuQG1RE0insW3',
+    priceTier: 'value',
   },
 ];

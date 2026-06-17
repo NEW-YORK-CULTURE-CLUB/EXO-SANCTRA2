@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, Suspense } from 'react'
 import { Button } from '@/components/ui/button.tsx'
-import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react'
+import { Mail, Send } from 'lucide-react'
 import Navbar from '@/components/Navbar.jsx'
 import Footer from '@/components/Footer.jsx'
 import Image from 'next/image'
@@ -74,7 +74,7 @@ function ContactForm() {
 
   return (
     <div className="bg-card rounded-xl p-8 shadow-sm">
-      <h3 className="text-2xl font-light mb-6 text-foreground">Send us a Message</h3>
+      <h3 className="text-2xl font-light mb-6 text-foreground">Send a Message</h3>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
@@ -212,13 +212,9 @@ function Contact() {
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-                <span className="text-muted-foreground">Contact </span>
-                <span className="text-foreground">Us</span>
+              <h1 className="text-4xl lg:text-5xl font-bold mb-0 text-foreground tracking-tight">
+                GET IN TOUCH
               </h1>
-              <p className="text-muted-foreground mb-0 max-w-2xl mx-auto">
-                Ready to transform your art business? Get in touch with our team to learn how ExhibitIQ can help you modernize your operations and enhance audience engagement.
-              </p>
             </div>
           </div>
         </section>
@@ -227,54 +223,48 @@ function Contact() {
         <section className="py-16 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              <div>
-                <h2 className="text-3xl font-light mb-6 text-foreground">Get in Touch</h2>
-                <p className="text-muted-foreground mb-8 leading-relaxed">
-                  Whether you're a gallery looking to streamline operations, an artist seeking better exposure, or a collector wanting to enhance your experience, we're here to help. Our team of art industry experts is ready to answer your questions and guide you through the ExhibitIQ platform.
+              <div className="space-y-8">
+                <p className="text-lg text-foreground font-light leading-relaxed">
+                  If you feel the connection - follow it.
                 </p>
-                
-                <div className="space-y-6">
+                <p className="text-muted-foreground leading-relaxed">
+                  Whether you&apos;re a collector, looking to collaborate, have a special request, or simply want to learn more about the artworks or the universe, you can reach out here.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Alina, creator of EXO SANCTRA, will personally review your message and get back to you.
+                </p>
+
+                <div className="space-y-6 pt-2">
                   <div className="flex items-start space-x-4">
-                    <div className="bg-primary/10 p-3 rounded-lg">
+                    <div className="bg-primary/10 p-3 rounded-lg shrink-0">
                       <Mail className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                      <p className="text-muted-foreground">admin@parallelworlds.us</p>
-                      <p className="text-sm text-muted-foreground">We typically respond within 24 hours</p>
+                      <a
+                        href="mailto:hello@exosanctra.com"
+                        className="font-medium text-foreground hover:text-primary transition-colors"
+                      >
+                        hello@exosanctra.com
+                      </a>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        For general inquiries and notifications
+                      </p>
                     </div>
                   </div>
-                  
                   <div className="flex items-start space-x-4">
-                    <div className="bg-primary/10 p-3 rounded-lg">
-                      <Phone className="w-6 h-6 text-primary" />
+                    <div className="bg-primary/10 p-3 rounded-lg shrink-0">
+                      <Mail className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                      <p className="text-muted-foreground">+1 347-746-6990</p>
-                      <p className="text-sm text-muted-foreground">Mon-Fri, 9AM-6PM EST</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-primary/10 p-3 rounded-lg">
-                      <MapPin className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">Office</h3>
-                      <p className="text-muted-foreground">16192 Coastal Highway<br />
-                      Lewes, Delaware 19958</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-primary/10 p-3 rounded-lg">
-                      <Clock className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">Business Hours</h3>
-                      <p className="text-muted-foreground">Monday - Friday: 9:00 AM - 6:00 PM EST</p>
-                      <p className="text-sm text-muted-foreground">Weekend appointments available by request</p>
+                      <a
+                        href="mailto:alinaalien.creator@exosanctra.com"
+                        className="font-medium text-foreground hover:text-primary transition-colors break-all"
+                      >
+                        alinaalien.creator@exosanctra.com
+                      </a>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        For artwork-related inquiries
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -283,60 +273,6 @@ function Contact() {
               <Suspense fallback={<div className="bg-card rounded-xl p-8 shadow-sm"><div className="animate-pulse">Loading form...</div></div>}>
                 <ContactForm />
               </Suspense>
-            </div>
-          </div>
-        </section>
-
-        {/* Team Contact Section */}
-        <section className="py-16 bg-muted">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-light mb-12 text-center text-foreground">Connect with Our Team</h2>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                {
-                  name: "Brian R. Yurachek",
-                  role: "Partner & Chief Executive Officer",
-                  email: "brian@exhibitiq.art",
-                  phone: "+1 347-746-6990",
-                  image: "/vault/brian.jpg"
-                },
-                {
-                  name: "Lily Primamore",
-                  role: "Partner & Chief Revenue Officer",
-                  email: "lily@exhibitiq.art",
-                  phone: "+1 347-746-6990",
-                  image: "/vault/lily.jpg"
-                },
-                {
-                  name: "Patrick Leonard",
-                  role: "SVP, Business Development",
-                  email: "patrick@exhibitiq.art",
-                  phone: "+1 347-746-6990",
-                  image: "/vault/patrick.png"
-                },
-                {
-                  name: "Risa Oze",
-                  role: "Partner & Advisor",
-                  email: "risa@exhibitiq.art",
-                  phone: "+1 347-746-6990",
-                  image: "/vault/risa.jpg"
-                }
-              ].map((member, index) => (
-                <div key={index} className="bg-card rounded-xl p-6 text-center shadow-sm hover:shadow-lg transition-all duration-300">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-24 h-24 object-cover rounded-full border-4 border-white mb-4 shadow-md mx-auto"
-                  />
-                  <h3 className="font-semibold mb-1 text-foreground text-sm">{member.name}</h3>
-                  <p className="text-xs text-primary mb-3 font-semibold">{member.role}</p>
-                  <div className="space-y-2 text-xs">
-                    <p className="text-muted-foreground">{member.email}</p>
-                    <p className="text-muted-foreground">{member.phone}</p>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </section>

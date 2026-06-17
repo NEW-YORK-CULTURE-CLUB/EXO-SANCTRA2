@@ -227,7 +227,7 @@ export default function DoNotSell() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Privacy Team</h3>
-                    <p className="text-primary font-medium">admin@parallelworlds.us</p>
+                    <p className="text-primary font-medium">hello@exosanctra.com</p>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Address</h3>

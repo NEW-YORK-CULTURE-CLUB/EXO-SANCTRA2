@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { X, Send, Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { Send, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -115,52 +115,34 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             <div>
               <h3 className="text-lg font-semibold mb-4">Get in Touch</h3>
               <p className="text-muted-foreground mb-6 text-sm">
-                Whether you're a gallery looking to streamline operations, an artist seeking better exposure, or a collector wanting to enhance your experience, we're here to help.
+                Reach out for general questions or artwork-related inquiries using the addresses below, or use the form.
               </p>
             </div>
             
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
-                <div className="bg-primary/10 p-2 rounded-lg">
+                <div className="bg-primary/10 p-2 rounded-lg shrink-0">
                   <Mail className="w-4 h-4 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-sm">Email</h4>
-                  <p className="text-xs text-muted-foreground">admin@parallelworlds.us</p>
-                  <p className="text-xs text-muted-foreground">We typically respond within 24 hours</p>
+                  <h4 className="font-medium text-sm">General</h4>
+                  <a href="mailto:hello@exosanctra.com" className="text-xs text-primary hover:underline break-all">
+                    hello@exosanctra.com
+                  </a>
+                  <p className="text-xs text-muted-foreground mt-1">General inquiries and notifications</p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-3">
-                <div className="bg-primary/10 p-2 rounded-lg">
-                  <Phone className="w-4 h-4 text-primary" />
+                <div className="bg-primary/10 p-2 rounded-lg shrink-0">
+                  <Mail className="w-4 h-4 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-sm">Phone</h4>
-                  <p className="text-xs text-muted-foreground">+1 347-746-6990</p>
-                  <p className="text-xs text-muted-foreground">Mon-Fri, 9AM-6PM EST</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <div className="bg-primary/10 p-2 rounded-lg">
-                  <MapPin className="w-4 h-4 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-medium text-sm">Office</h4>
-                  <p className="text-xs text-muted-foreground">16192 Coastal Highway<br />
-                  Lewes, Delaware 19958</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <div className="bg-primary/10 p-2 rounded-lg">
-                  <Clock className="w-4 h-4 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-medium text-sm">Business Hours</h4>
-                  <p className="text-xs text-muted-foreground">Monday - Friday: 9:00 AM - 6:00 PM EST</p>
-                  <p className="text-xs text-muted-foreground">Weekend appointments available by request</p>
+                  <h4 className="font-medium text-sm">Artwork</h4>
+                  <a href="mailto:alinaalien.creator@exosanctra.com" className="text-xs text-primary hover:underline break-all">
+                    alinaalien.creator@exosanctra.com
+                  </a>
+                  <p className="text-xs text-muted-foreground mt-1">Artwork-related inquiries</p>
                 </div>
               </div>
             </div>

@@ -41,7 +41,7 @@ export interface UserSettings {
 const defaultSettings: UserSettings = {
   avatar: "",
   fullname: "Gallery Admin",
-  email: "admin@exhibitiq.com",
+  email: "hello@exosanctra.com",
   phone: "+1 (555) 123-4567",
   timezone: "utc-8",
   language: "en",

@@ -111,7 +111,7 @@ function generateDemoRequestEmailTemplate(data: any) {
           ` : ''}
         </div>
         <div class="footer">
-          © ${new Date().getFullYear()} ExhibitIQ. All rights reserved.
+          © ${new Date().getFullYear()} EXO SANCTRA. All rights reserved.
         </div>
       </div>
     </body>
@@ -145,9 +145,9 @@ export async function POST(request: NextRequest) {
 
     // Prepare mail options
     const mailOptions = {
-      from: 'ExhibitIQ',
-      to: ['admin@exhibitiq.art', 'brian@exhibitiq.art', 'Lily@parallelworlds.us', 'okuakpabio0@gmail.com', 'Brian@parallelworlds.us'],
-      subject: `New ExhibitIQ Demo Request - ${data.fullName}`,
+      from: 'EXO SANCTRA',
+      to: ['hello@exosanctra.com'],
+      subject: `New demo request - ${data.fullName}`,
       text: `
 New Demo Request
 

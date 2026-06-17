@@ -74,7 +74,7 @@ export default function PrivacyPolicy() {
               <li>Access, update, or delete your personal data via account settings or by contacting us</li>
               <li>Opt out of marketing communications via unsubscribe links or settings</li>
               <li>Manage cookie and tracking preferences through your browser settings</li>
-              <li>Request account deletion by emailing admin@parallelworlds.us</li>
+              <li>Request account deletion by emailing hello@exosanctra.com</li>
             </ul>
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">Data Security</h2>
@@ -92,7 +92,7 @@ export default function PrivacyPolicy() {
               <strong>Parallel Worlds, Inc.</strong><br />
               16192 Coastal Highway<br />
               Lewes, Delaware 19958<br />
-              Email: admin@parallelworlds.us
+              Email: hello@exosanctra.com
             </p>
           </motion.div>
         </div>

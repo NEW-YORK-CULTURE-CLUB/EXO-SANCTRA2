@@ -73,7 +73,7 @@ function OmrakCollection() {
                           <ul className="text-sm lg:text-base text-white/75 space-y-2">
                             <li>
                               <span className="font-semibold text-white">Original or fine art print:</span>{' '}
-                              choose between the hand-drawn 11×14&quot; piece or a high-quality archival print.
+                              choose the hand-drawn original, or a standard (11×14&quot;) or large (16×20&quot;) archival print.
                             </li>
                             <li>
                               <span className="font-semibold text-white">A daily altar ally:</span> each artwork
@@ -93,9 +93,8 @@ function OmrakCollection() {
                           </h3>
                           <p className="text-sm lg:text-base text-white/75">
                             Click any artwork below to open its full image and story. From there you can
-                            send a direct request to purchase the original piece or a print of that
-                            specific artwork. Originals are one-of-one. Prints are limited and made
-                            to order.
+                            purchase the original or choose a print size.
+                            Originals are one-of-one. Prints are made to order.
                           </p>
                         </div>
                       </motion.div>

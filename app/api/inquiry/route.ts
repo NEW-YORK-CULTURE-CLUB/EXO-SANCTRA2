@@ -118,7 +118,7 @@ function generateInquiryEmailTemplate(data: any) {
           </div>
         </div>
         <div class="footer">
-          © ${new Date().getFullYear()} ExhibitIQ. All rights reserved.
+          © ${new Date().getFullYear()} EXO SANCTRA. All rights reserved.
         </div>
       </div>
     </body>
@@ -152,8 +152,8 @@ export async function POST(request: NextRequest) {
 
     // Prepare mail options
     const mailOptions = {
-      from: 'ExhibitIQ',
-      to: 'admin@exhibitiq.art',
+      from: 'EXO SANCTRA',
+      to: 'alinaalien.creator@exosanctra.com',
       subject: `New Art Inquiry from ${data.fullName}`,
       text: `
 New Art Inquiry
