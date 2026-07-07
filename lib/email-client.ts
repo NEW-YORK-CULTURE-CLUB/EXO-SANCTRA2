@@ -1,4 +1,4 @@
-import { EMAIL_NOT_CONFIGURED_CODE, EMAIL_NOT_CONFIGURED_MESSAGE } from './email';
+import { EMAIL_NOT_CONFIGURED_CODE, EMAIL_NOT_CONFIGURED_MESSAGE } from './email-constants';
 
 export async function handleEmailApiResponse(response: Response): Promise<{ ok: true } | { ok: false; message: string }> {
   if (response.ok) {

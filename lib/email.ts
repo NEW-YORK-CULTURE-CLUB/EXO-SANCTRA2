@@ -1,9 +1,10 @@
 import nodemailer from 'nodemailer';
+import {
+  EMAIL_NOT_CONFIGURED_CODE,
+  EMAIL_NOT_CONFIGURED_MESSAGE,
+} from './email-constants';
 
-export const EMAIL_NOT_CONFIGURED_CODE = 'EMAIL_NOT_CONFIGURED';
-
-export const EMAIL_NOT_CONFIGURED_MESSAGE =
-  'Email is not configured for this site. Add SMTP_EMAIL_USER and SMTP_EMAIL_PASSWORD (your Gmail address and app password) to the server environment variables to enable outbound email.';
+export { EMAIL_NOT_CONFIGURED_CODE, EMAIL_NOT_CONFIGURED_MESSAGE };
 
 export type EmailConfig = {
   user: string;
