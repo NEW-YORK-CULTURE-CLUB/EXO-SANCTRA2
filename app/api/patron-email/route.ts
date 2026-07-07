@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import {
+  createEmailTransporter,
+  emailNotConfiguredPayload,
+  getEmailConfig,
+} from '@/lib/email';
 
 // Email Template Generator for Patron Communications
 function generatePatronEmailTemplate(data: any) {
@@ -135,21 +139,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Configure email transporter
-    const transporter = nodemailer.createTransporter({
-      service: 'gmail',
-      auth: {
-        user: 'vestrybooking@gmail.com',
-        pass: 'fjiq yzyr qhns qhnp',
-      },
-    });
+    const transporter = createEmailTransporter();
+    if (!transporter) {
+      return NextResponse.json(emailNotConfiguredPayload(), { status: 503 });
+    }
+    const emailConfig = getEmailConfig()!;
 
     // Generate HTML content
     const htmlContent = generatePatronEmailTemplate(data);
 
     // Prepare mail options
     const mailOptions = {
-      from: 'ExhibitIQ Gallery Management <vestrybooking@gmail.com>',
+      from: emailConfig.from,
       to: data.recipients,
       subject: data.subject,
       text: `

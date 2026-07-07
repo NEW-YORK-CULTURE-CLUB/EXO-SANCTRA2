@@ -143,6 +143,15 @@ function SendEmailModal({ open, onOpenChange, selectedPatrons, galleryName = 'Ex
                 }),
             });
 
+            const { handleEmailApiResponse } = await import('@/lib/email-client');
+            const emailResult = await handleEmailApiResponse(response);
+            if (!emailResult.ok) {
+                toast.error('Email not configured', {
+                    description: emailResult.message,
+                });
+                return;
+            }
+
             if (response.ok) {
                 toast.success(`Email sent successfully to ${finalRecipients.split(',').length} patron(s)`);
                 onOpenChange(false);

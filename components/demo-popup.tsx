@@ -11,6 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
+import { handleEmailApiResponse } from '@/lib/email-client';
 
 export default function DemoPopup() {
   const { user, loading } = useAuth();
@@ -118,6 +119,16 @@ export default function DemoPopup() {
         },
         body: JSON.stringify(formData),
       });
+
+      const emailResult = await handleEmailApiResponse(response);
+      if (!emailResult.ok) {
+        toast({
+          title: 'Email not configured',
+          description: emailResult.message,
+          variant: 'destructive',
+        });
+        return;
+      }
 
       if (!response.ok) {
         throw new Error('Failed to send demo request');

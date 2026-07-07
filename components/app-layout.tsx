@@ -55,6 +55,7 @@ export function AppLayout({ children }: AppLayoutProps) {
     '/where-to',
     '/community',
     '/omrak-collection',
+    '/admin/data-export',
     
   ];
   

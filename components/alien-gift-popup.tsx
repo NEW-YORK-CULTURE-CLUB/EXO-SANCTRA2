@@ -11,6 +11,7 @@ import { collection, addDoc, query, where, getDocs, serverTimestamp } from 'fire
 import { db } from '@/lib/firebase';
 import { useAuth } from '@/contexts/auth-context';
 import { toast } from 'sonner';
+import { handleEmailApiResponse } from '@/lib/email-client';
 
 interface AlienGiftPopupProps {
   isOpen: boolean;
@@ -74,6 +75,14 @@ export default function AlienGiftPopup({ isOpen, onClose }: AlienGiftPopupProps)
         },
         body: JSON.stringify(claimData),
       });
+
+      const emailResult = await handleEmailApiResponse(response);
+      if (!emailResult.ok) {
+        toast.error('Email not configured', {
+          description: emailResult.message,
+        });
+        return;
+      }
 
       if (!response.ok) {
         throw new Error('Failed to send email notification');

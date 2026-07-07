@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import {
+  createEmailTransporter,
+  emailNotConfiguredPayload,
+  getEmailConfig,
+} from '@/lib/email';
 
 // Email Template Generator for Art Inquiry
 function generateInquiryEmailTemplate(data: any) {
@@ -139,21 +143,19 @@ export async function POST(request: NextRequest) {
     }
 
     // Configure email transporter
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'vestrybooking@gmail.com',
-        pass: 'fjiq yzyr qhns qhnp',
-      },
-    });
+    const transporter = createEmailTransporter();
+    if (!transporter) {
+      return NextResponse.json(emailNotConfiguredPayload(), { status: 503 });
+    }
+    const emailConfig = getEmailConfig()!;
 
     // Generate HTML content
     const htmlContent = generateInquiryEmailTemplate(data);
 
     // Prepare mail options
     const mailOptions = {
-      from: 'EXO SANCTRA',
-      to: 'alinaalien.creator@exosanctra.com',
+      from: emailConfig.from,
+      to: process.env.SMTP_NOTIFICATION_TO?.trim() || 'alinaalien.creator@exosanctra.com',
       subject: `New Art Inquiry from ${data.fullName}`,
       text: `
 New Art Inquiry

@@ -10,6 +10,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
+import { handleEmailApiResponse } from '@/lib/email-client';
 import { X, Send } from 'lucide-react';
 
 interface ArtInquiryFormProps {
@@ -88,8 +89,14 @@ export function ArtInquiryForm({ isOpen, onClose, artworkTitle }: ArtInquiryForm
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to send inquiry');
+      const emailResult = await handleEmailApiResponse(response);
+      if (!emailResult.ok) {
+        toast({
+          title: 'Email not configured',
+          description: emailResult.message,
+          variant: 'destructive',
+        });
+        return;
       }
 
       const result = await response.json();

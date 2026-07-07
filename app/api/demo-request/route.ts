@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import {
+  createEmailTransporter,
+  emailNotConfiguredPayload,
+  getEmailConfig,
+} from '@/lib/email';
 
 // Email Template Generator for Demo Request
 function generateDemoRequestEmailTemplate(data: any) {
@@ -131,22 +135,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Configure email transporter
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'vestrybooking@gmail.com',
-        pass: 'fjiq yzyr qhns qhnp',
-      },
-    });
+    const transporter = createEmailTransporter();
+    if (!transporter) {
+      return NextResponse.json(emailNotConfiguredPayload(), { status: 503 });
+    }
+    const emailConfig = getEmailConfig()!;
 
     // Generate HTML content
     const htmlContent = generateDemoRequestEmailTemplate(data);
 
     // Prepare mail options
     const mailOptions = {
-      from: 'EXO SANCTRA',
-      to: ['hello@exosanctra.com'],
+      from: emailConfig.from,
+      to: [process.env.SMTP_NOTIFICATION_TO?.trim() || 'hello@exosanctra.com'],
       subject: `New demo request - ${data.fullName}`,
       text: `
 New Demo Request

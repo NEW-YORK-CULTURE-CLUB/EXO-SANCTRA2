@@ -16,7 +16,8 @@ export function ConditionalAppLayout({ children }: ConditionalAppLayoutProps) {
     pathname === '/ar' ||
     pathname.startsWith('/ar/') ||
     pathname === '/vr3d' ||
-    pathname.startsWith('/omrak-collection/')
+    pathname.startsWith('/omrak-collection/') ||
+    pathname.startsWith('/admin/')
   ) {
     return <>{children}</>;
   }
