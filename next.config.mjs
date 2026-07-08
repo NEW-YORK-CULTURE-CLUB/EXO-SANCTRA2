@@ -10,11 +10,12 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
-  eslint: {
+  allowedDevOrigins: ['192.168.0.109'],
+  // eslint: {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
-    ignoreDuringBuilds: true,
-  },
+    // ignoreDuringBuilds: true,
+  // },
   serverExternalPackages: ['@prisma/client', 'bcrypt'],
   images: {
     remotePatterns: [
