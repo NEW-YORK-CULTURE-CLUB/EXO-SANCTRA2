@@ -1,0 +1,7 @@
+allowBuilds:
+  '@firebase/util': true
+  bufferutil: true
+  keccak: true
+  protobufjs: true
+  sharp: true
+  utf-8-validate: true
