@@ -97,12 +97,13 @@ export default function ARViewerPage() {
   const artwork = AR_ARTWORKS.find((a) => a.id === id) ?? AR_ARTWORKS[0];
 
   const [mounted, setMounted] = useState(false);
+  const [isARMode, setIsARMode] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [qrOpen, setQrOpen] = useState(false);
   const [pageUrl, setPageUrl] = useState('');
   const shareRef = useRef<HTMLDivElement>(null);
-  const modelViewerRef = useRef<HTMLElement>(null);
+  // const modelViewerRef = useRef<HTMLElement>(null);
 
   // Load model-viewer script + set page URL on mount
   useEffect(() => {
@@ -119,20 +120,22 @@ export default function ARViewerPage() {
   }, []);
 
   // Re-trigger animations when AR session starts
-  useEffect(() => {
-    const mv = modelViewerRef.current as (HTMLElement & { play?: (opts?: { repetitions?: number }) => void }) | null;
-    if (!mv) return;
+  // useEffect(() => {
+  //   const mv = modelViewerRef.current as (HTMLElement & { play?: (opts?: { repetitions?: number }) => void }) | null;
+  //   if (!mv) return;
 
-    const handleArStatus = (e: Event) => {
-      const status = (e as CustomEvent<{ status: string }>).detail?.status;
-      if (status === 'session-started' && typeof mv.play === 'function') {
-        mv.play({ repetitions: Infinity });
-      }
-    };
+  //   const handleArStatus = (e: Event) => {
+  //     const status = (e as CustomEvent<{ status: string }>).detail?.status;
+  //     if (status === 'session-started' && typeof mv.play === 'function') {
+  //       mv.play({ repetitions: Infinity });
+  //     }
+  //   };
 
-    mv.addEventListener('ar-status', handleArStatus);
-    return () => mv.removeEventListener('ar-status', handleArStatus);
-  }, [mounted]);
+  //   mv.addEventListener('ar-status', handleArStatus);
+  //   return () => mv.removeEventListener('ar-status', handleArStatus);
+  // }, [mounted]);
+
+
 
   // Close share dropdown on outside click
   useEffect(() => {
@@ -244,42 +247,56 @@ export default function ARViewerPage() {
       {/* ── model-viewer (3D + AR) ── */}
       <div className="flex-1 relative min-h-0">
         {mounted && (
-          <model-viewer
-            ref={modelViewerRef}
-            src={artwork.path}
-            {...(artwork.usdzPath ? { 'ios-src': artwork.usdzPath } : {})}
-            alt={artwork.label}
-            ar
-            ar-modes="scene-viewer webxr quick-look"
-            ar-scale="auto"
-            camera-controls
-            auto-rotate
-            auto-rotate-delay={2000}
-            rotation-per-second="20deg"
-            autoplay
-            shadow-intensity="1"
-            exposure="1"
-            loading="eager"
-            reveal="auto"
-            style={{
-              width: '100%',
-              height: '100%',
-              background: 'transparent',
-              '--poster-color': 'transparent',
-            } as React.CSSProperties}
-          >
-            {/* Loading slot */}
-            <div slot="progress-bar" />
-
-            {/* Custom AR button */}
-            <button
-              slot="ar-button"
-              className="absolute bottom-16 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-white/90 active:scale-95 transition-all shadow-lg"
-            >
-              <Scan className="w-4 h-4" />
-              View in AR
-            </button>
-          </model-viewer>
+          <>
+            {!isARMode ? (
+              /* РЕЖИМ 1: 3D Попередній перегляд (model-viewer) */
+              <motion.div 
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }} 
+                className="w-full h-full"
+              >
+                <model-viewer
+                  src={artwork.path}
+                  alt={artwork.label}
+                  camera-controls
+                  auto-rotate
+                  autoplay
+                  ar-status="not-presenting" // Важливо: вимикаємо рідний AR
+                  style={{ width: '100%', height: '100%', background: 'transparent' } as any}
+                >
+                </model-viewer>
+                <button
+                  onClick={() => setIsARMode(true)}
+                  className="absolute bottom-16 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-white/90 active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] z-30"
+                >
+                  <Scan className="w-4 h-4" />
+                  View in AR
+                </button>
+              </motion.div>
+            ) : (
+              /* РЕЖИМ 2: Справжній AR (8th Wall Iframe) */
+              <motion.div 
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }} 
+                className="w-full h-full"
+              >
+                <iframe
+                  src={`/8thwall/index.html?id=${id}&path=${artwork.path}`}
+                  className="w-full h-full border-none"
+                  allow="camera; microphone; gyro; accelerometer; xr-spatial-tracking"
+                  scrolling="no"
+                />
+                
+                {/* Кнопка "Вийти з AR", якщо треба повернутися до 3D */}
+                <button
+                  onClick={() => setIsARMode(false)}
+                  className="absolute top-20 right-4 p-2 rounded-full bg-black/50 text-white backdrop-blur-md border border-white/10"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </motion.div>
+            )}
+          </>
         )}
 
         {/* Hint text — sits above model-viewer but below the AR button */}
