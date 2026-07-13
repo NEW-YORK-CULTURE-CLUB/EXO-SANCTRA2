@@ -74,6 +74,24 @@ const AR_ARTWORKS = [
     image: '/vault/Characters for AR_Art Collection/Let Go.jpg',
     description: 'The hardest thing you will ever hold is the thing you are finally ready to release.',
   },
+  {
+    id: 'character_12',
+    label: 'Character_12',
+    image: '/vault/Characters for AR_Art Collection/IMG_2378.png',
+    description: 'The hardest thing you will ever hold is the thing you are finally ready to release.',
+  },
+  {
+    id: 'character_13',
+    label: 'Character_13',
+    image: '/vault/Characters for AR_Art Collection/IMG_0943.jpg',
+    description: 'The hardest thing you will ever hold is the thing you are finally ready to release.',
+  },
+  {
+    id: 'character_14',
+    label: 'Character_14',
+    image: '/vault/Characters for AR_Art Collection/IMG_1202.jpeg',
+    description: 'The hardest thing you will ever hold is the thing you are finally ready to release.',
+  },
 ] as const;
 
 export default function ARGalleryPage() {

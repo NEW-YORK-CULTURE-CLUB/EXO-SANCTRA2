@@ -114,3 +114,4 @@ dist.zip
 *.eps
 
 certificates
+.env*

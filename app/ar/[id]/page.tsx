@@ -87,6 +87,27 @@ const AR_ARTWORKS = [
     label: 'Let Go',
     description: 'The hardest thing you will ever hold is the thing you are finally ready to release.',
   },
+  {
+    id: 'character_12',
+    path: '/vault/AR/artwork_12.glb',
+    usdzPath: '',
+    label: 'Character_12',
+    description: 'The hardest thing you will ever hold is the thing you are finally ready to release.',
+  },
+  {
+    id: 'character_13',
+    path: '/vault/AR/artwork_13.glb',
+    usdzPath: '',
+    label: 'Character_13',
+    description: 'The hardest thing you will ever hold is the thing you are finally ready to release.',
+  },
+  {
+    id: 'character_14',
+    path: '/vault/AR/artwork_14.glb',
+    usdzPath: '',
+    label: 'Character_14',
+    description: 'The hardest thing you will ever hold is the thing you are finally ready to release.',
+  },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
